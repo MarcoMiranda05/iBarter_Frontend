@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar";
 
 class App extends Component {
   state = {
-    isLogged: true
+    isLogged: false
   };
 
   render() {

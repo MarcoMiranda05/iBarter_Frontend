@@ -112,3 +112,7 @@ button:hover,
   color: #ed5941;
   padding: 0px;
 }
+
+.name {
+  padding: 0px 16px 0px 0px;
+}
