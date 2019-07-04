@@ -34,9 +34,9 @@ const NavBar = props => {
           <a href="home">Home</a>
         </li>
 
-        <li class="categories">
-          <a class="dropbtn">Categories</a>
-          <div class="categories-content">
+        <li className="categories">
+          <a className="dropbtn">Categories</a>
+          <div className="categories-content">
             <a value="Link 1">Link 1</a>
             <a value="Link 1">Link 2</a>
             <a value="Link 1">Link 3</a>

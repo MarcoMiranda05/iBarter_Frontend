@@ -1,0 +1,58 @@
+.slider {
+  display: grid;
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+  height: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-top: 75px;
+}
+
+.slider-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.slide {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+.arrow {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: transform ease-in 0.1s;
+}
+
+.nextArrow {
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  z-index: 999;
+  color: black;
+}
+
+.backArrow {
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  z-index: 999;
+  color: black;
+}
+
+.fa-arrow-left:before {
+  content: url("https://i.imgur.com/c5zetSI.png");
+}
+
+.fa-arrow-right:before {
+  margin: auto;
+  content: url("https://i.imgur.com/LoT9Hw9.png");
+}
