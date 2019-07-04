@@ -107,3 +107,8 @@ button:hover,
 .navbar {
   background-color: #ed5941;
 }
+
+.welcome {
+  color: #ed5941;
+  padding: 0px;
+}
