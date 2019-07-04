@@ -23,6 +23,16 @@ class Carousel extends Component {
     };
   }
 
+  componentDidMount() {
+    this.startCarousel();
+  }
+
+  startCarousel = () => {
+    setInterval(() => {
+      this.goToNextSlide();
+    }, 5000);
+  };
+
   goToPrevSlide = () => {
     if (this.state.currentIndex === 0) return;
 
