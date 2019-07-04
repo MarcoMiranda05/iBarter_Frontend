@@ -1,0 +1,109 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.logo {
+  width: 200px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a,
+.dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li label,
+.dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover,
+.categories:hover .dropbtn {
+  background-color: #ed5941;
+}
+
+li.categories {
+  display: inline-block;
+}
+
+.categories-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.categories-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.categories-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.categories:hover .categories-content {
+  display: block;
+}
+
+.search-bar {
+  padding: 6px;
+  border: none;
+  margin: auto;
+  border-radius: 15px;
+  width: 300px;
+}
+
+.search-bar-container {
+  position: absolute;
+  left: 50%;
+  margin-left: -230px;
+  top: 50%;
+  margin-top: -25px;
+}
+
+.login {
+  float: right;
+  display: inline-block;
+}
+
+button {
+  border-radius: 12px;
+  padding: 6px 10px;
+  margin-top: 10px;
+  margin-right: 5px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover,
+.navbar {
+  background-color: #ed5941;
+}
