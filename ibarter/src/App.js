@@ -5,15 +5,30 @@ import Carousel from "./components/Carousel";
 import Footer from "./components/Footer";
 import ItemCardContainer from "./containers/ItemCardContainer";
 import NewItemForm from "./containers/NewItemForm.js";
+import UserPageContainer from "./containers/UserPageContainer";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-const API = "https://ibarter.herokuapp.com/";
+const API = "https://ibarter.herokuapp.com/api/";
 
 class App extends Component {
   state = {
     isLogged: true,
     items: [],
-    itemForm: new FormData()
+    itemForm: new FormData(),
+    users: [
+      {
+        id: 1,
+        first_name: "Pat",
+        last_name: "Santucci",
+        email: "isuck@cambio.com",
+        addr1: "51 Cambio Road",
+        town: "Cambioville",
+        county: "Cambioshire",
+        postcode: "ER00R4",
+        profile_pic:
+          "https://uploads-learn.s3.amazonaws.com/uploads/identities/learn_account/avatar/f4738c2e-a40a-47be-9734-ce9c5169075d/avatar.png"
+      }
+    ]
   };
 
   componentDidMount() {
@@ -37,6 +52,10 @@ class App extends Component {
     return (
       <NewItemForm onChange={this.itemOnChange} submit={this.submitItem} />
     );
+  };
+
+  userPage = () => {
+    return <UserPageContainer users={this.state.users} />;
   };
 
   itemOnChange = e => {
@@ -64,6 +83,7 @@ class App extends Component {
         <Router>
           <Route path="/" exact component={this.home} />
           <Route path="/list-item" component={this.listItem} />
+          <Route path="/userpage" component={this.userPage} />
         </Router>
         <Footer />
       </>
