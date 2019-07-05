@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
+import Carousel from "./components/Carousel";
 import ItemCardContainer from "./containers/ItemCardContainer";
 import NewItemForm from "./containers/NewItemForm.js"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -26,6 +27,7 @@ class App extends Component {
 	home = () => {
 		return (
 			<React.Fragment>
+        <Carousel />  
 				<ItemCardContainer items={this.state.items} />
 			</React.Fragment>
 		)
