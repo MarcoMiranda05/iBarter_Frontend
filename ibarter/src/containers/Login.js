@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from "react-router";
 
 const API = "https://ibarter.herokuapp.com/api/";
 
@@ -27,7 +28,8 @@ class Login extends React.Component {
 			.then(resp => resp.json())
 			.then(data => {
 				localStorage.setItem("jwt", data.jwt);
-				this.context.history.push("/");
+				this.props.setIsLogged(true);
+				this.props.history.push("/");
 			})
 			.catch(error => console.log('error', error));
 	}      
@@ -47,4 +49,4 @@ class Login extends React.Component {
 	}
 }
 
-export default Login;
+export default withRouter(Login);
