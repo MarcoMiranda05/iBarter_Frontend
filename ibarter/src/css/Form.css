@@ -1,0 +1,36 @@
+.form {
+	height: 90vh;
+	width: 600px;
+	margin: auto;
+
+	padding-top: 100px;
+	background-color: #292828;
+
+	text-align: center;
+	color: white;
+}
+
+.form input {
+	width: 90%;
+	font-size: 2em;
+	border-radius: 5px;
+	border-width: 0px;
+}
+
+.form input[type=file] {
+	font-size: 1em;
+}
+
+.form select {
+	width: 90%;
+	font-size: 2em;
+}
+.form label {
+	display: block;
+}
+
+.form button {
+	width: 30%;
+	float: right;
+	border-radius: 5px;
+}

@@ -3,10 +3,12 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import Carousel from "./components/Carousel";
 import ItemCardContainer from "./containers/ItemCardContainer";
-import NewItemForm from "./containers/NewItemForm.js"
+import NewItemForm from "./containers/NewItemForm"
+import Login from "./containers/Login"
+import Logout from "./components/Logout"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-const API = "https://ibarter.herokuapp.com/";
+const API = "https://ibarter.herokuapp.com/api/";
 
 class App extends Component {
 	
@@ -27,7 +29,7 @@ class App extends Component {
 	home = () => {
 		return (
 			<React.Fragment>
-        <Carousel />  
+				<Carousel />  
 				<ItemCardContainer items={this.state.items} />
 			</React.Fragment>
 		)
@@ -39,32 +41,24 @@ class App extends Component {
 		)
 	}
 
-	itemOnChange = (e) => {
-		const newForm = this.state.itemForm;
-		if(e.target.name == "images") {
-			newForm.set(`item[${e.target.name}][]`, e.target.files[0]);
-		} else {
-			newForm.set(`item[${e.target.name}]`, e.target.value);
-		}
-		this.setState({itemForm: newForm})
+	login = () => {
+		return <Login />
 	}
 
-	submitItem = () => {
-		console.log(this.state.itemForm);
-		fetch(`${API}/items`, {
-			method: "POST",
-			body: this.state.itemForm
-		})
-		
+	logout = () => {
+		return <Logout />
 	}
 
 	render() {
 		return (
 			<>
-				<NavBar isLogged={this.state.isLogged} />
+				<link href="https://fonts.googleapis.com/css?family=Raleway:200&display=swap" rel="stylesheet"/>
 				<Router>
+					<NavBar isLogged={this.state.isLogged} />
 					<Route path="/" exact component={this.home} />
 					<Route path="/list-item" component={this.listItem} />
+					<Route path="/login" component={this.login} />
+					<Route path="/logout" component={this.logout} />
 				</Router>
 			</>
 		);
