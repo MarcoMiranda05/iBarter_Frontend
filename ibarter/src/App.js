@@ -72,12 +72,14 @@ class App extends Component {
 				<link href="https://fonts.googleapis.com/css?family=Raleway:200&display=swap" rel="stylesheet"/>
 				<Router>
 					<NavBar/>
-					<Route path="/" exact component={this.home} />
-					<Route path="/list-item" component={this.listItem} />
-					<Route path="/login" component={this.login} />
-					<Route path="/logout" component={this.logout} />
-					<Route path="/signup" component={this.signUp} />
-					<Route path="/items/:id" component={this.showItem} />
+					<div id="content">
+						<Route path="/" exact component={this.home} />
+						<Route path="/list-item" component={this.listItem} />
+						<Route path="/login" component={this.login} />
+						<Route path="/logout" component={this.logout} />
+						<Route path="/signup" component={this.signUp} />
+						<Route path="/items/:id" component={this.showItem} />
+					</div>
 				</Router>
 				<Footer />
 			</>

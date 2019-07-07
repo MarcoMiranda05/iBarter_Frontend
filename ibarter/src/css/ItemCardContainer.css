@@ -35,8 +35,16 @@
 }
 
 .card-front span h2 {
-	font-size: 3em;
+	font-size: 3vw;
 	color: white;
+}
+
+.card-front p {
+	font-size: 1.2vw;
+}
+
+.card-details h3 {
+	font-size: 1.2vw;
 }
 
 .item-card .card-details {
@@ -93,7 +101,7 @@
 	flex-direction: column;
 	justify-content: space-around;
 	color: white;
-	font-size: 10em;
+	font-size: 15vw;
 	line-height: 0px;
 	transition: color 0.4s;
 	text-decoration: none;
