@@ -7,6 +7,8 @@ import ItemCardContainer from "./containers/ItemCardContainer";
 import NewItemForm from "./containers/NewItemForm"
 import Login from "./containers/Login"
 import Logout from "./components/Logout"
+import SignUpForm from "./containers/SignUpForm"
+import ItemPage from "./containers/ItemPage"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const API = "https://ibarter.herokuapp.com/api/";
@@ -37,6 +39,9 @@ class App extends Component {
 
 	setIsLogged = (val) => {
 		this.setState({isLogged: val})
+
+		// Get the user ID
+		
 	}
 
 	listItem = () => {
@@ -53,10 +58,14 @@ class App extends Component {
 		return <Logout setIsLogged={this.setIsLogged}/>
 	}
 
-	showItem = () => {
-
+	showItem = (props) => {
+		return <ItemPage id={props.match.params.id} />
 	}
 
+	signUp = (props) => {
+		return <SignUpForm setIsLogged={this.setIsLogged}/>
+	}
+	
 	render() {
 		return (
 			<>
@@ -67,6 +76,8 @@ class App extends Component {
 					<Route path="/list-item" component={this.listItem} />
 					<Route path="/login" component={this.login} />
 					<Route path="/logout" component={this.logout} />
+					<Route path="/signup" component={this.signUp} />
+					<Route path="/items/:id" component={this.showItem} />
 				</Router>
 				<Footer />
 			</>
