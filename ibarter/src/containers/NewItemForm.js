@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from "react-router";
 
 const API = "https://ibarter.herokuapp.com/api/";
 
@@ -61,4 +62,4 @@ class NewItemForm extends React.Component {
 
 }
 
-export default NewItemForm;
+export default withRouter(NewItemForm);
