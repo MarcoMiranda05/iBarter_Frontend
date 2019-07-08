@@ -1,0 +1,81 @@
+.user-page {
+  display: grid;
+  padding-top: 50px;
+  grid-template-areas:
+    "header header header header header header"
+    "menu menu menu main main main";
+
+  grid-gap: 10px;
+}
+
+.user-page > div {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.user-page-name {
+  grid-area: header;
+  color: #ed5941;
+  display: block;
+  padding: 0% 40% 0% 45%;
+}
+
+.user-card {
+  grid-area: main;
+}
+
+.profile_pic {
+  float: right;
+  border-radius: 50%;
+  width: 250px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.user-info {
+  float: right;
+}
+
+.user-info h2 {
+  color: #ed5941;
+}
+.user-info a {
+  color: white;
+}
+
+.user-info a:hover {
+  color: #ed5941;
+}
+
+.user-inbox {
+  grid-area: menu;
+
+  color: white;
+
+  height: 250px;
+}
+
+.user-inbox h2 {
+  color: #ed5941;
+  position: relative;
+}
+
+.title {
+  color: #ed5941;
+  display: inline;
+  font-weight: bold;
+}
+
+.inline {
+  color: white;
+  display: inline;
+}
+
+.lines {
+  margin: 15px;
+}
+
+.offers-lines {
+  overflow: scroll;
+  height: 200px;
+}

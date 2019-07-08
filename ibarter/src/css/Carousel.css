@@ -18,6 +18,7 @@
   display: inline-block;
   height: 100%;
   width: 100%;
+  border-radius: 12px;
 }
 
 .arrow {
@@ -35,7 +36,7 @@
   position: absolute;
   top: 50%;
   right: 25px;
-  z-index: 999;
+  z-index: 1;
   color: black;
 }
 
@@ -43,7 +44,7 @@
   position: absolute;
   top: 50%;
   left: 25px;
-  z-index: 999;
+  z-index: 1;
   color: black;
 }
 
