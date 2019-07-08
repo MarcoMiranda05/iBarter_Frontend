@@ -11,85 +11,94 @@ import Logout from "./components/Logout";
 import SignUpForm from "./containers/SignUpForm";
 import ItemPage from "./containers/ItemPage";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+var jwtDecode = require('jwt-decode');
 const API = "https://ibarter.herokuapp.com/api/";
 
 class App extends Component {
-  state = {
-    isLogged: false,
-    items: [],
-    itemForm: new FormData(),
-    users: [
-      {
-        id: 1,
-        first_name: "Pat",
-        last_name: "Santucci",
-        email: "isuck@cambio.com",
-        addr1: "51 Cambio Road",
-        town: "Cambioville",
-        county: "Cambioshire",
-        postcode: "ER00R4",
-        profile_pic:
+	state = {
+		isLogged: false,
+		items: [],
+		itemForm: new FormData(),
+		currentUser: {},
+		users: [
+			{
+				id: 1,
+				first_name: "Pat",
+				last_name: "Santucci",
+				email: "isuck@cambio.com",
+				addr1: "51 Cambio Road",
+				town: "Cambioville",
+				county: "Cambioshire",
+				postcode: "ER00R4",
+				profile_pic:
           "https://uploads-learn.s3.amazonaws.com/uploads/identities/learn_account/avatar/f4738c2e-a40a-47be-9734-ce9c5169075d/avatar.png",
-        item: {
-          id: 1,
-          image_urls:
+				item: {
+					id: 1,
+					image_urls:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj5vHWF0Ihtq21FIAATMM0C3eEJZKnjf4dqFMQpHlx6Fxtr2nq9Q",
-          name: "Tapioca",
-          description: "Looks like cocaine, but isn't",
-          condition: "good"
-        }
-      }
-    ]
+					name: "Tapioca",
+					description: "Looks like cocaine, but isn't",
+					condition: "good"
+				}
+			}
+		]
+	};
+
+	componentDidMount() {
+		fetch(`${API}items`)
+			.then(resp => resp.json())
+			.then(data => {
+				this.setState({ items: data });
+			});
+
+		this.setCurrentUser(localStorage.getItem("jwt"));
+	}
+
+	home = () => {
+		return (
+			<React.Fragment>
+				<Carousel />
+				<ItemCardContainer items={this.state.items} />
+			</React.Fragment>
+		);
   };
 
-  componentDidMount() {
-    fetch(`${API}items`)
-      .then(resp => resp.json())
-      .then(data => {
-        this.setState({ items: data });
-      });
-  }
+	setCurrentUser = jwt => {
+		if(jwt){
+			fetch(`${API}users/${jwtDecode(jwt).sub}`)
+				   .then(resp => resp.json())
+				   .then((data) => {
+					   this.setState({currentUser: data})
+				   })
+		} else {
+			this.setState({currentUser: {}})
+		}
+	};
 
-  home = () => {
-    return (
-      <React.Fragment>
-        <Carousel />
-        <ItemCardContainer items={this.state.items} />
-      </React.Fragment>
-    );
-  };
+	userPage = () => {
+		return <UserPageContainer users={this.state.users} />;
+	};
 
-  setIsLogged = val => {
-    this.setState({ isLogged: val });
+	listItem = () => {
+		return (
+			<NewItemForm onChange={this.itemOnChange} submit={this.submitItem} />
+		);
+	};
 
-    // Get the user ID
-  };
+	login = () => {
+		return <Login setCurrentUser={this.setCurrentUser} />;
+	};
 
-  userPage = () => {
-    return <UserPageContainer users={this.state.users} />;
-  };
+	logout = () => {
+		return <Logout setCurrentUser={this.setCurrentUser} />;
+	};
 
-  listItem = () => {
-    return (
-      <NewItemForm onChange={this.itemOnChange} submit={this.submitItem} />
-    );
-  };
+	showItem = props => {
+		return <ItemPage id={props.match.params.id} />;
+	};
 
-  login = () => {
-    return <Login setIsLogged={this.setIsLogged} />;
-  };
-
-  logout = () => {
-    return <Logout setIsLogged={this.setIsLogged} />;
-  };
-
-  showItem = props => {
-    return <ItemPage id={props.match.params.id} />;
-  };
-
-  signUp = props => {
-    return <SignUpForm setIsLogged={this.setIsLogged} />;
+	signUp = props => {
+		return <SignUpForm setCurrentUser={this.setCurrentUser} />;
   };
 
   render() {
