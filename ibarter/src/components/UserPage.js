@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import ItemCard from "./ItemCard";
+import NewItemForm from "../containers/NewItemForm";
 
 class UserPage extends Component {
   render() {
@@ -10,7 +12,8 @@ class UserPage extends Component {
       addr1,
       town,
       county,
-      postcode
+      postcode,
+      item
     } = this.props.user;
     return (
       <div className="user-page">
@@ -54,15 +57,22 @@ class UserPage extends Component {
               <p className="inline"> {postcode}</p>
             </div>
           </div>
-          <div>
-            <div className="item-card">
-              <img
-                src={
-                  "https://www.gourmetfoodworld.com/images/Product/large/tapioca-flour-tapioca-starch-1S-1925.jpg"
-                }
-              />
-              <div className="card-details" />
-            </div>
+        </div>
+        <div className="item-card">
+          <img src={item.image_urls} />
+          {/* <img src={`${API}${item.image_urls[0]}`} /> */}
+          <div className="gradient" />
+          <div className="card-front">
+            <span>
+              <h2>{item.name}</h2>
+              <div className="hl" />
+              <p>{item.description}</p>
+            </span>
+          </div>
+          <div className="card-details">
+            <h3>
+              <span className="pink">Condition:</span> {item.condition}
+            </h3>
           </div>
         </div>
       </div>
