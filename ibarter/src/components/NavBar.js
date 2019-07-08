@@ -1,14 +1,39 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink
+} from "react-router-dom";
 
 const NavBar = props => {
-	const toggleSignInSignOut = () => {
-		return (
-			localStorage.getItem("jwt") ?
-			<li className="nav-item"><NavLink exact className="nav-link" to="/logout">Log Out</NavLink></li>
-			:
-			<li className="nav-item"><NavLink exact className="nav-link" activeClassName="active" to="/login">Log In</NavLink></li>
-		)
+  const toggleSignInSignOut = () => {
+    return localStorage.getItem("jwt") ? (
+      <React.Fragment>
+        <li className="nav-item">
+          <NavLink exact className="nav-link" to="/logout">
+            Log Out
+          </NavLink>
+        </li>
+        <li className="login">
+          <div>
+            <li className="welcome">Welcome, </li>
+            <li className="name">Stranger!</li>
+          </div>
+        </li>
+      </React.Fragment>
+    ) : (
+      <li className="nav-item">
+        <NavLink
+          exact
+          className="nav-link"
+          activeClassName="active"
+          to="/login"
+        >
+          Log In
+        </NavLink>
+      </li>
+    );
   };
 
   return (

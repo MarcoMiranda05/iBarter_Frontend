@@ -92,6 +92,11 @@ li.categories {
 .login {
   float: right;
   display: inline-block;
+
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
 button {
@@ -116,4 +121,9 @@ button:hover,
 
 .name {
   padding: 0px 16px 0px 0px;
+}
+
+.nav-item {
+  float: right;
+  margin-right: 15px;
 }
