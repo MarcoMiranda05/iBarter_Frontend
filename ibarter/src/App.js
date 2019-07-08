@@ -4,15 +4,19 @@ import NavBar from "./components/NavBar";
 import Carousel from "./components/Carousel";
 import Footer from "./components/Footer";
 import ItemCardContainer from "./containers/ItemCardContainer";
-import NewItemForm from "./containers/NewItemForm.js";
 import UserPageContainer from "./containers/UserPageContainer";
+import NewItemForm from "./containers/NewItemForm";
+import Login from "./containers/Login";
+import Logout from "./components/Logout";
+import SignUpForm from "./containers/SignUpForm";
+import ItemPage from "./containers/ItemPage";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const API = "https://ibarter.herokuapp.com/api/";
 
 class App extends Component {
   state = {
-    isLogged: true,
+    isLogged: false,
     items: [],
     itemForm: new FormData(),
     users: [
@@ -48,41 +52,53 @@ class App extends Component {
     );
   };
 
-  listItem = () => {
-    return (
-      <NewItemForm onChange={this.itemOnChange} submit={this.submitItem} />
-    );
+  setIsLogged = val => {
+    this.setState({ isLogged: val });
+
+    // Get the user ID
   };
 
   userPage = () => {
     return <UserPageContainer users={this.state.users} />;
   };
 
-  itemOnChange = e => {
-    const newForm = this.state.itemForm;
-    if (e.target.name == "images") {
-      newForm.set(`item[${e.target.name}][]`, e.target.files[0]);
-    } else {
-      newForm.set(`item[${e.target.name}]`, e.target.value);
-    }
-    this.setState({ itemForm: newForm });
+  listItem = () => {
+    return (
+      <NewItemForm onChange={this.itemOnChange} submit={this.submitItem} />
+    );
   };
 
-  submitItem = () => {
-    console.log(this.state.itemForm);
-    fetch(`${API}/items`, {
-      method: "POST",
-      body: this.state.itemForm
-    });
+  login = () => {
+    return <Login setIsLogged={this.setIsLogged} />;
+  };
+
+  logout = () => {
+    return <Logout setIsLogged={this.setIsLogged} />;
+  };
+
+  showItem = props => {
+    return <ItemPage id={props.match.params.id} />;
+  };
+
+  signUp = props => {
+    return <SignUpForm setIsLogged={this.setIsLogged} />;
   };
 
   render() {
     return (
       <>
-        <NavBar isLogged={this.state.isLogged} />
+        <link
+          href="https://fonts.googleapis.com/css?family=Raleway:200&display=swap"
+          rel="stylesheet"
+        />
         <Router>
+          <NavBar />
           <Route path="/" exact component={this.home} />
           <Route path="/list-item" component={this.listItem} />
+          <Route path="/login" component={this.login} />
+          <Route path="/logout" component={this.logout} />
+          <Route path="/signup" component={this.signUp} />
+          <Route path="/items/:id" component={this.showItem} />
           <Route path="/userpage" component={this.userPage} />
         </Router>
         <Footer />
