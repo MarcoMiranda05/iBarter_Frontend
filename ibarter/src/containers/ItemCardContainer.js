@@ -19,8 +19,8 @@ class ItemCardContainer extends React.Component {
 				""
 			}
 			{
-				this.props.items.map((item) => {
-					return <ItemCard item={item} />
+				this.props.items.map((item, i) => {
+					return <ItemCard item={item} key={i} />
 				})
 			}
 			</div>
