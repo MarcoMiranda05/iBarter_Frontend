@@ -1,4 +1,5 @@
 .slider {
+  padding-top: 100px;
   display: grid;
   position: relative;
   width: 60%;
