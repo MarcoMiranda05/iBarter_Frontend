@@ -10,6 +10,7 @@ import Login from "./containers/Login";
 import Logout from "./components/Logout";
 import SignUpForm from "./containers/SignUpForm";
 import ItemPage from "./containers/ItemPage";
+import OffersContainer from "./containers/OffersContainer";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const API = "https://ibarter.herokuapp.com/api/";
@@ -33,6 +34,19 @@ class App extends Component {
           "https://uploads-learn.s3.amazonaws.com/uploads/identities/learn_account/avatar/f4738c2e-a40a-47be-9734-ce9c5169075d/avatar.png",
         item: {
           id: 1,
+          image_urls:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj5vHWF0Ihtq21FIAATMM0C3eEJZKnjf4dqFMQpHlx6Fxtr2nq9Q",
+          name: "Tapioca",
+          description: "Looks like cocaine, but isn't",
+          condition: "good"
+        }
+      }
+    ],
+    offers: [
+      {
+        accepted: false,
+        message: "cool cool cool",
+        item: {
           image_urls:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj5vHWF0Ihtq21FIAATMM0C3eEJZKnjf4dqFMQpHlx6Fxtr2nq9Q",
           name: "Tapioca",
@@ -64,6 +78,10 @@ class App extends Component {
     this.setState({ isLogged: val });
 
     // Get the user ID
+  };
+
+  offerPage = () => {
+    return <OffersContainer offers={this.state.offers} />;
   };
 
   userPage = () => {
@@ -108,6 +126,7 @@ class App extends Component {
           <Route path="/signup" component={this.signUp} />
           <Route path="/items/:id" component={this.showItem} />
           <Route path="/userpage" component={this.userPage} />
+          <Route path="/offer" component={this.offerPage} />
         </Router>
         <Footer />
       </>

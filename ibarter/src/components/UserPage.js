@@ -81,13 +81,3 @@ class UserPage extends Component {
 }
 
 export default UserPage;
-
-// id: 1,
-//         first_name: "Pat",
-//         last_name: "Santucci",
-//         email: "isuckatcambio@santucci.com",
-//         addr1: "-1 Cambio Road",
-//         town: "Cambioville",
-//         county: "Cambioshire",
-//         postcode: "ER00R4",
-//         profile_pic:

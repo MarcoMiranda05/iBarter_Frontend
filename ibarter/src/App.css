@@ -6,7 +6,8 @@
 @import "./css/Form.css";
 @import "./css/ItemPage.css";
 @import "./css/Tag.css";
+@import "./css/OfferPage.css";
 
 #content {
-	padding-top: 75px;
+  padding-top: 75px;
 }

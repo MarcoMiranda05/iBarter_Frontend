@@ -15,6 +15,9 @@ const NavBar = props => {
             Log Out
           </NavLink>
         </li>
+        <li className="my-page">
+          <a href="/userpage">My Page</a>
+        </li>
         <li className="login">
           <div>
             <li className="welcome">Welcome, </li>
