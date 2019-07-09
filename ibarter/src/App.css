@@ -6,6 +6,7 @@
 @import "./css/Form.css";
 @import "./css/ItemPage.css";
 @import "./css/Tag.css";
+@import "./css/ItemSelector.css";
 
 #content {
 	padding-top: 75px;

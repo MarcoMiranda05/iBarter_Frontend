@@ -44,8 +44,41 @@ class App extends Component {
 					condition: "good"
 				}
 			}
-		]
+		],
+		offerForm: {
+			items: []
+		}
 	};
+
+	//Offer form stuff
+	
+	offerFormOnChange = (e) => {
+		const form = {...this.state.offerForm};
+		form[e.target.name] = e.target.value;
+		this.setState({offerForm: form});
+	}
+
+	setOfferFormState = () => {
+		const form = {...this.state.offerForm};
+		form["items"] = this.state.currentUser.items;
+		this.setState({offerForm: form});
+	}
+
+	offerFormSelectItem = (e, selectedItem) => {
+		const form = {...this.state.offerForm};
+		const index = form.items.findIndex((item) => {return item.id == selectedItem.id});
+		form.items[index].selected = form.items[index].selected ? false : true;
+		this.setState({offerForm: form});
+	}
+
+	submitOffer = () => {
+	}
+
+	//End of offer form stuff
+
+	onUserSet = () => {
+		this.setOfferFormState();
+	}
 
 	componentDidMount() {
 		fetch(`${API}items`)
@@ -54,7 +87,13 @@ class App extends Component {
 				this.setState({ items: data });
 			});
 
-		this.setCurrentUser(localStorage.getItem("jwt"));
+		this.setCurrentUser(localStorage.getItem("jwt"))
+			.then(() => {
+				this.onUserSet()
+			})
+
+		//set offer form items
+		
 	}
 
 	home = () => {
@@ -64,15 +103,15 @@ class App extends Component {
 				<ItemCardContainer items={this.state.items} />
 			</React.Fragment>
 		);
-  };
+	};
 
 	setCurrentUser = jwt => {
 		if(jwt){
-			fetch(`${API}users/${jwtDecode(jwt).sub}`)
-				   .then(resp => resp.json())
-				   .then((data) => {
-					   this.setState({currentUser: data})
-				   })
+			return fetch(`${API}users/${jwtDecode(jwt).sub}`)
+				.then(resp => resp.json())
+				.then((data) => {
+					this.setState({currentUser: data})
+				})
 		} else {
 			this.setState({currentUser: {}})
 		}
@@ -89,7 +128,12 @@ class App extends Component {
 	};
 
 	makeOffer = (props) => {
-		return <OfferForm id={props.match.params.id} items={this.state.currentUser.items}/>;
+		return <OfferForm
+				   id={props.match.params.id}
+		onChange={this.offerFormOnChange}
+		offerForm={this.state.offerForm}
+		selectItem={this.offerFormSelectItem}
+		/>;
 	}
 
 	login = () => {
@@ -106,32 +150,32 @@ class App extends Component {
 
 	signUp = props => {
 		return <SignUpForm setCurrentUser={this.setCurrentUser} />;
-  };
+	};
 
-  render() {
-    return (
-      <>
-        <link
-          href="https://fonts.googleapis.com/css?family=Raleway:200&display=swap"
-          rel="stylesheet"
-        />
-        <Router>
-			<NavBar />
-			<div id="content">
-				<Route path="/" exact component={this.home} />
-				<Route path="/list-item" component={this.listItem} />
-				<Route path="/login" component={this.login} />
-				<Route path="/logout" component={this.logout} />
-				<Route path="/signup" component={this.signUp} />
-				<Route path="/items/:id" component={this.showItem} />
-				<Route path="/userpage" component={this.userPage} />
-				<Route path="/make-offer/:id" component={this.makeOffer} />
-			</div>
-        </Router>
-        <Footer />
-      </>
-    );
-  }
+	render() {
+		return (
+			<>
+				<link
+				href="https://fonts.googleapis.com/css?family=Raleway:200&display=swap"
+				rel="stylesheet"
+				/>
+				<Router>
+					<NavBar />
+					<div id="content">
+						<Route path="/" exact component={this.home} />
+						<Route path="/list-item" component={this.listItem} />
+						<Route path="/login" component={this.login} />
+						<Route path="/logout" component={this.logout} />
+						<Route path="/signup" component={this.signUp} />
+						<Route path="/items/:id" component={this.showItem} />
+						<Route path="/userpage" component={this.userPage} />
+						<Route path="/make-offer/:id" component={this.makeOffer} />
+					</div>
+				</Router>
+				<Footer />
+			</>
+		);
+	}
 }
 
 export default App;
