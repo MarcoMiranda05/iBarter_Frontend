@@ -1,7 +1,7 @@
 #item-card-container {
   display: flex;
   padding-top: 100px;
-  justify-content: space-around;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
@@ -11,7 +11,6 @@
   width: 33.3vw;
   height: 33.3vw;
   overflow: hidden;
-  margin: 15px;
 }
 
 .item-card .card-front {

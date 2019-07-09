@@ -28,7 +28,7 @@ class Login extends React.Component {
 			.then(resp => resp.json())
 			.then(data => {
 				localStorage.setItem("jwt", data.jwt);
-				this.props.setIsLogged(true);
+				this.props.setCurrentUser(data.jwt);
 				this.props.history.push("/");
 			})
 			.catch(error => console.log('error', error));

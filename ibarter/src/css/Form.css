@@ -13,6 +13,15 @@
   color: #ed5941;
 }
 
+.form h1 {
+  padding-top: 20px;
+}
+
+.form label {
+  color: #ed5941;
+  font-size: 30px;
+}
+
 .form input {
   width: 90%;
   font-size: 2em;
@@ -37,4 +46,11 @@
   width: 30%;
   font-size: 1em;
   border-radius: 5px;
+}
+
+textarea {
+  width: 90%;
+  font-size: 2em;
+  border-radius: 5px;
+  border-width: 0px;
 }

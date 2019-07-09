@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 
 const Logout = (props) => {
 	localStorage.removeItem('jwt');
-	props.setIsLogged(false);
+	props.setCurrentUser(null);
 	return <Redirect to='/' />
 }
 

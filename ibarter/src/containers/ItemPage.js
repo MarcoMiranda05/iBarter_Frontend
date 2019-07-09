@@ -1,5 +1,6 @@
 import React from "react";
 import Tag from "../components/Tag";
+import { withRouter } from "react-router";
 
 const API = "https://ibarter.herokuapp.com/";
 
@@ -7,6 +8,15 @@ class ItemPage extends React.Component {
   state = {
     item: {}
   };
+
+  componentDidMount() {
+    fetch(`${API}api/items/${this.props.id}`)
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data);
+        this.setState({ item: data });
+      });
+  }
 
   componentDidMount() {
     fetch(`${API}api/items/${this.props.id}`)
@@ -52,10 +62,19 @@ class ItemPage extends React.Component {
               return <Tag tag={tag} key={i} />;
             })}
           </div>
+          <div id="button-container">
+            <button
+              onClick={() => {
+                this.props.history.push(`/make-offer/${this.state.item.id}`);
+              }}
+            >
+              Make Offer
+            </button>
+          </div>
         </div>
       </>
     );
   }
 }
 
-export default ItemPage;
+export default withRouter(ItemPage);

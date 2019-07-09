@@ -9,10 +9,11 @@ import NewItemForm from "./containers/NewItemForm";
 import Login from "./containers/Login";
 import Logout from "./components/Logout";
 import SignUpForm from "./containers/SignUpForm";
+import OfferForm from "./containers/OfferForm";
 import ItemPage from "./containers/ItemPage";
 import OffersContainer from "./containers/OffersContainer";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+var jwtDecode = require("jwt-decode");
 const API = "https://ibarter.herokuapp.com/api/";
 
 class App extends Component {
@@ -20,6 +21,9 @@ class App extends Component {
     isLogged: false,
     items: [],
     itemForm: new FormData(),
+    currentUser: {
+      items: []
+    },
     users: [
       {
         id: 1,
@@ -42,6 +46,10 @@ class App extends Component {
         }
       }
     ],
+    offerForm: {
+      item_id: "",
+      items: []
+    },
     offers: [
       {
         accepted: false,
@@ -57,12 +65,78 @@ class App extends Component {
     ]
   };
 
+  //Offer form stuff
+
+  offerFormOnChange = e => {
+    const form = { ...this.state.offerForm };
+    form[e.target.name] = e.target.value;
+    this.setState({ offerForm: form });
+  };
+
+  setOfferFormState = () => {
+    const form = { ...this.state.offerForm };
+    form["items"] = this.state.currentUser.items;
+    this.setState({ offerForm: form });
+  };
+
+  offerFormSelectItem = (e, selectedItem) => {
+    const form = { ...this.state.offerForm };
+    const index = form.items.findIndex(item => {
+      return item.id == selectedItem.id;
+    });
+    form.items[index].selected = form.items[index].selected ? false : true;
+    this.setState({ offerForm: form });
+  };
+
+  offerFormHandleSubmit = id => {
+    const body = {
+      offer: {}
+    };
+
+    const item_ids = this.state.offerForm.items
+      .filter(item => item.selected)
+      .map(item => item.id);
+
+    if (item_ids.length < 1) {
+      alert("Must select at least 1 item!");
+      return;
+    }
+
+    body.offer.item_ids = item_ids;
+    body.offer.message = this.state.offerForm.message;
+
+    let token = "Bearer " + localStorage.getItem("jwt");
+    fetch(`${API}items/${id}/offer`, {
+      method: "POST",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+      .then(resp => resp.json)
+      .then(console.log);
+  };
+
+  //End of offer form stuff
+
+  onUserSet = () => {
+    this.setOfferFormState();
+  };
+
   componentDidMount() {
     fetch(`${API}items`)
       .then(resp => resp.json())
       .then(data => {
         this.setState({ items: data });
       });
+
+    if (localStorage.getItem("jwt")) {
+      this.setCurrentUser(localStorage.getItem("jwt")).then(() => {
+        this.onUserSet();
+      });
+    }
   }
 
   home = () => {
@@ -74,14 +148,16 @@ class App extends Component {
     );
   };
 
-  setIsLogged = val => {
-    this.setState({ isLogged: val });
-
-    // Get the user ID
-  };
-
-  offerPage = () => {
-    return <OffersContainer offers={this.state.offers} />;
+  setCurrentUser = jwt => {
+    if (jwt) {
+      return fetch(`${API}users/${jwtDecode(jwt).sub}`)
+        .then(resp => resp.json())
+        .then(data => {
+          this.setState({ currentUser: data });
+        });
+    } else {
+      this.setState({ currentUser: {} });
+    }
   };
 
   userPage = () => {
@@ -94,12 +170,28 @@ class App extends Component {
     );
   };
 
+  makeOffer = props => {
+    return (
+      <OfferForm
+        id={props.match.params.id}
+        onChange={this.offerFormOnChange}
+        offerForm={this.state.offerForm}
+        selectItem={this.offerFormSelectItem}
+        handleSubmit={this.offerFormHandleSubmit}
+      />
+    );
+  };
+
+  offerPage = () => {
+    return <OffersContainer offers={this.state.offers} />;
+  };
+
   login = () => {
-    return <Login setIsLogged={this.setIsLogged} />;
+    return <Login setCurrentUser={this.setCurrentUser} />;
   };
 
   logout = () => {
-    return <Logout setIsLogged={this.setIsLogged} />;
+    return <Logout setCurrentUser={this.setCurrentUser} />;
   };
 
   showItem = props => {
@@ -107,7 +199,7 @@ class App extends Component {
   };
 
   signUp = props => {
-    return <SignUpForm setIsLogged={this.setIsLogged} />;
+    return <SignUpForm setCurrentUser={this.setCurrentUser} />;
   };
 
   render() {
@@ -119,14 +211,17 @@ class App extends Component {
         />
         <Router>
           <NavBar />
-          <Route path="/" exact component={this.home} />
-          <Route path="/list-item" component={this.listItem} />
-          <Route path="/login" component={this.login} />
-          <Route path="/logout" component={this.logout} />
-          <Route path="/signup" component={this.signUp} />
-          <Route path="/items/:id" component={this.showItem} />
-          <Route path="/userpage" component={this.userPage} />
-          <Route path="/offer" component={this.offerPage} />
+          <div id="content">
+            <Route path="/" exact component={this.home} />
+            <Route path="/list-item" component={this.listItem} />
+            <Route path="/login" component={this.login} />
+            <Route path="/logout" component={this.logout} />
+            <Route path="/signup" component={this.signUp} />
+            <Route path="/items/:id" component={this.showItem} />
+            <Route path="/userpage" component={this.userPage} />
+            <Route path="/make-offer/:id" component={this.makeOffer} />
+            <Route path="/offer" component={this.offerPage} />
+          </div>
         </Router>
         <Footer />
       </>
