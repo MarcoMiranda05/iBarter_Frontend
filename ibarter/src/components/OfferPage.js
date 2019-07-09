@@ -10,7 +10,7 @@ class OfferPage extends Component {
   };
 
   rejectOffer = () => {
-    alert("Offer Reject");
+    alert("Offer has been rejected");
   };
 
   render() {

@@ -21,16 +21,24 @@ class UserPage extends Component {
         <div className="user-inbox">
           <h2>INBOX</h2>
           <div className="offers-lines">
-            <p>offer</p>
-            <p>offer</p>
-            <p>offer</p>
-            <p>offer</p>
-            <p>offer</p>
-            <p>offer</p>
-            <p>offer</p>
-            <p>offer</p>
-            <p>offer</p>
-            <p>offer</p>
+            <a href="/offer">
+              <p>An offer has been made to your [item]</p>
+            </a>
+            <a href="/offer">
+              <p>An offer has been made to your [item]</p>
+            </a>
+            <a href="/offer">
+              <p>An offer has been made to your [item]</p>
+            </a>
+            <a href="/offer">
+              <p>An offer has been made to your [item]</p>
+            </a>
+            <a href="/offer">
+              <p>An offer has been made to your [item]</p>
+            </a>
+            <a href="/offer">
+              <p>An offer has been made to your [item]</p>
+            </a>
           </div>
         </div>
         <div className="user-card">

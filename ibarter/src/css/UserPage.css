@@ -79,3 +79,8 @@
   overflow: scroll;
   height: 200px;
 }
+
+.offers-lines a {
+  color: white;
+  text-decoration: none;
+}
