@@ -9,6 +9,7 @@ import NewItemForm from "./containers/NewItemForm";
 import Login from "./containers/Login";
 import Logout from "./components/Logout";
 import SignUpForm from "./containers/SignUpForm";
+import OfferForm from "./containers/OfferForm";
 import ItemPage from "./containers/ItemPage";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 var jwtDecode = require('jwt-decode');
@@ -19,7 +20,9 @@ class App extends Component {
 		isLogged: false,
 		items: [],
 		itemForm: new FormData(),
-		currentUser: {},
+		currentUser: {
+			items: []
+		},
 		users: [
 			{
 				id: 1,
@@ -85,6 +88,10 @@ class App extends Component {
 		);
 	};
 
+	makeOffer = (props) => {
+		return <OfferForm id={props.match.params.id} items={this.state.currentUser.items}/>;
+	}
+
 	login = () => {
 		return <Login setCurrentUser={this.setCurrentUser} />;
 	};
@@ -109,14 +116,17 @@ class App extends Component {
           rel="stylesheet"
         />
         <Router>
-          <NavBar />
-          <Route path="/" exact component={this.home} />
-          <Route path="/list-item" component={this.listItem} />
-          <Route path="/login" component={this.login} />
-          <Route path="/logout" component={this.logout} />
-          <Route path="/signup" component={this.signUp} />
-          <Route path="/items/:id" component={this.showItem} />
-          <Route path="/userpage" component={this.userPage} />
+			<NavBar />
+			<div id="content">
+				<Route path="/" exact component={this.home} />
+				<Route path="/list-item" component={this.listItem} />
+				<Route path="/login" component={this.login} />
+				<Route path="/logout" component={this.logout} />
+				<Route path="/signup" component={this.signUp} />
+				<Route path="/items/:id" component={this.showItem} />
+				<Route path="/userpage" component={this.userPage} />
+				<Route path="/make-offer/:id" component={this.makeOffer} />
+			</div>
         </Router>
         <Footer />
       </>

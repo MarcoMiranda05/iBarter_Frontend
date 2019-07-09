@@ -2,12 +2,19 @@
 	height: 90vh;
 	width: 600px;
 	margin: auto;
-
-	padding-top: 100px;
 	background-color: #292828;
 
 	text-align: center;
 	color: white;
+}
+
+.form h1 {
+	padding-top: 20px;
+}
+
+.form label {
+	color: #ed5941;
+	font-size: 30px;
 }
 
 .form input {
@@ -33,4 +40,11 @@
 	width: 30%;
 	float: right;
 	border-radius: 5px;
+}
+
+textarea {
+	width: 90%;
+	font-size: 2em;
+	border-radius: 5px;
+	border-width: 0px;
 }

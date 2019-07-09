@@ -1,5 +1,6 @@
 import React from 'react';
 import Tag from "../components/Tag"
+import { withRouter } from "react-router";
 
 const API = "https://ibarter.herokuapp.com/";
 
@@ -23,9 +24,9 @@ class ItemPage extends React.Component {
 		const tags = ["tag", "wah", "gsag", "safgdgsafasg", "gdasf", "tag", "wah", "gsag", "safgdgsafasg", "gdasf", ]
 		return (
 			<>
-			<h1>{ item.name }</h1>
-			<div className="left">
-			{
+				<h1>{ item.name }</h1>
+				<div className="left">
+					{
 						item.image_urls ? <img id="main-img" src={`${API}${item.image_urls[0]}`} /> : ""
 					}
 					
@@ -43,10 +44,13 @@ class ItemPage extends React.Component {
 							})
 						}
 					</div>
+					<div id="button-container">
+						<button onClick={() =>{this.props.history.push(`/make-offer/${this.state.item.id}`)}}>Make Offer</button>
+					</div>
 				</div>
 			</>
 		)
 	}
 }
 
-export default ItemPage;
+export default withRouter(ItemPage);
