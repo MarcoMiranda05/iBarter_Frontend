@@ -46,6 +46,7 @@ class App extends Component {
 			}
 		],
 		offerForm: {
+			item_id: "",
 			items: []
 		}
 	};
@@ -71,7 +72,35 @@ class App extends Component {
 		this.setState({offerForm: form});
 	}
 
-	submitOffer = () => {
+	offerFormHandleSubmit = (id) => {
+		const body = {
+			offer: {
+			}
+		}
+
+		const item_ids = this.state.offerForm.items.filter(item => item.selected)
+							.map(item => item.id);
+
+		if(item_ids.length < 1) {
+			alert("Must select at least 1 item!")
+			return;
+		}
+		
+		body.offer.item_ids = item_ids;
+		body.offer.message = this.state.offerForm.message;
+		
+		let token = "Bearer " + localStorage.getItem("jwt");
+		fetch(`${API}items/${id}/offer`, {
+			method: "POST",
+			headers: {
+				Authorization: token,
+				"Content-Type": "application/json",
+				"Accept": "application/json"
+			},
+			body: JSON.stringify(body)
+		})
+			.then(resp => resp.json)
+			.then(console.log)
 	}
 
 	//End of offer form stuff
@@ -87,12 +116,12 @@ class App extends Component {
 				this.setState({ items: data });
 			});
 
-		this.setCurrentUser(localStorage.getItem("jwt"))
-			.then(() => {
-				this.onUserSet()
-			})
-
-		//set offer form items
+		if(localStorage.getItem("jwt")){
+			this.setCurrentUser(localStorage.getItem("jwt"))
+				.then(() => {
+					this.onUserSet()
+				})
+		}
 		
 	}
 
@@ -133,6 +162,7 @@ class App extends Component {
 		onChange={this.offerFormOnChange}
 		offerForm={this.state.offerForm}
 		selectItem={this.offerFormSelectItem}
+		handleSubmit={this.offerFormHandleSubmit}
 		/>;
 	}
 

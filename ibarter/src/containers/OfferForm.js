@@ -22,7 +22,7 @@ class OfferForm extends React.Component {
 					<label name="message">Message: </label>
 					<textarea rows="4" name="message" onChange={this.props.onChange} />
 					<div id="button-container">
-						<button onClick={this.handleSubmit}>Submit</button>
+						<button onClick={() => {this.props.handleSubmit(this.props.id)}}>Submit</button>
 					</div>
 				</div>
 			</>
