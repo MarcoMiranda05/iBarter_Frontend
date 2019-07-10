@@ -13,6 +13,7 @@ import OfferForm from "./containers/OfferForm";
 import ItemPage from "./containers/ItemPage";
 import OffersContainer from "./containers/OffersContainer";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import AboutUs from "./components/AboutUs";
 var jwtDecode = require("jwt-decode");
 const API = "https://ibarter.herokuapp.com/api/";
 
@@ -202,6 +203,10 @@ class App extends Component {
     return <SignUpForm setCurrentUser={this.setCurrentUser} />;
   };
 
+  aboutUsPage = () => {
+    return <AboutUs />;
+  };
+
   render() {
     return (
       <>
@@ -210,7 +215,7 @@ class App extends Component {
           rel="stylesheet"
         />
         <Router>
-          <NavBar />
+          <NavBar currentUser={this.state.currentUser} />
           <div id="content">
             <Route path="/" exact component={this.home} />
             <Route path="/list-item" component={this.listItem} />
@@ -221,6 +226,7 @@ class App extends Component {
             <Route path="/userpage" component={this.userPage} />
             <Route path="/make-offer/:id" component={this.makeOffer} />
             <Route path="/offer" component={this.offerPage} />
+            <Route path="/about-us" component={this.aboutUsPage} />
           </div>
         </Router>
         <Footer />

@@ -21,7 +21,7 @@ const NavBar = props => {
         <li className="login">
           <div>
             <li className="welcome">Welcome, </li>
-            <li className="name">Stranger!</li>
+            <li className="name"> {props.currentUser.first_name}</li>
           </div>
         </li>
       </React.Fragment>
@@ -52,7 +52,6 @@ const NavBar = props => {
         <li>
           <a href="/">Home</a>
         </li>
-
         <li className="categories">
           <a className="dropbtn">Categories</a>
           <div className="categories-content">
@@ -60,6 +59,9 @@ const NavBar = props => {
             <a value="Link 1">Link 2</a>
             <a value="Link 1">Link 3</a>
           </div>
+        </li>
+        <li>
+          <a href="/about-us">About us</a>
         </li>
         <li>
           <div className="search-bar-container">

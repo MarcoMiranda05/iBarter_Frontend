@@ -1,0 +1,15 @@
+.about-us {
+  height: auto;
+  width: 600px;
+  margin: auto;
+  padding: 10px;
+  background-color: #292828;
+
+  text-align: center;
+  color: white;
+}
+
+.question {
+  color: #ed5941;
+  font-weight: bold;
+}
