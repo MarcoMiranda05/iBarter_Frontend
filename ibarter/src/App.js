@@ -19,45 +19,45 @@ var jwtDecode = require("jwt-decode");
 const API = "https://ibarter.herokuapp.com/api/";
 
 class App extends Component {
-	state = {
-		isLogged: false,
-		items: [],
-		itemForm: new FormData(),
-		currentUser: {
-			items: []
-		},
-		users: [
-			{
-				id: 1,
-				first_name: "Pat",
-				last_name: "Santucci",
-				email: "isuck@cambio.com",
-				addr1: "51 Cambio Road",
-				town: "Cambioville",
-				county: "Cambioshire",
-				postcode: "ER00R4",
-				profile_pic:
+  state = {
+    isLogged: false,
+    items: [],
+    itemForm: new FormData(),
+    currentUser: {
+      items: []
+    },
+    users: [
+      {
+        id: 1,
+        first_name: "Pat",
+        last_name: "Santucci",
+        email: "isuck@cambio.com",
+        addr1: "51 Cambio Road",
+        town: "Cambioville",
+        county: "Cambioshire",
+        postcode: "ER00R4",
+        profile_pic:
           "https://uploads-learn.s3.amazonaws.com/uploads/identities/learn_account/avatar/f4738c2e-a40a-47be-9734-ce9c5169075d/avatar.png",
-				item: {
-					id: 1,
-					image_urls:
+        item: {
+          id: 1,
+          image_urls:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj5vHWF0Ihtq21FIAATMM0C3eEJZKnjf4dqFMQpHlx6Fxtr2nq9Q",
-					name: "Tapioca",
-					description: "Looks like cocaine, but isn't",
-					condition: "good"
-				}
-			}
-		],
-		offerForm: {
-			item_id: "",
-			items: []
-		},
-		offers: [
-			{
-				accepted: false,
-				message: "cool cool cool",
-				item: {
-					image_urls:
+          name: "Tapioca",
+          description: "Looks like cocaine, but isn't",
+          condition: "good"
+        }
+      }
+    ],
+    offerForm: {
+      item_id: "",
+      items: []
+    },
+    offers: [
+      {
+        accepted: false,
+        message: "cool cool cool",
+        item: {
+          image_urls:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj5vHWF0Ihtq21FIAATMM0C3eEJZKnjf4dqFMQpHlx6Fxtr2nq9Q",
 					name: "Tapioca",
 					description: "Looks like cocaine, but isn't",
@@ -65,6 +65,14 @@ class App extends Component {
 				}
 			}
 		]
+  };
+
+	// feeding carousel
+
+	recentItemsImages = () => {
+		return this.state.items.map(
+			item => `https://ibarter.herokuapp.com/${item.image_urls[0]}`
+		);
 	};
 
 	//Offer form stuff
@@ -144,7 +152,7 @@ class App extends Component {
 	home = () => {
 		return (
 			<React.Fragment>
-				<Carousel />
+				<Carousel images={this.recentItemsImages()} />
 				<ItemCardContainer items={this.state.items} />
 			</React.Fragment>
 		);
