@@ -16,7 +16,7 @@ const NavBar = props => {
           </NavLink>
         </li>
         <li className="my-page">
-          <a href="/userpage">My Page</a>
+          <Link to={`/users/${props.currentUser.id}`}>My Page</Link>
         </li>
         <li className="login">
           <div>
@@ -50,7 +50,7 @@ const NavBar = props => {
           />
         </li>
         <li>
-          <a href="/">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li className="categories">
           <a className="dropbtn">Categories</a>
@@ -61,7 +61,7 @@ const NavBar = props => {
           </div>
         </li>
         <li>
-          <a href="/about-us">About us</a>
+          <Link to="/about-us">About us</Link>
         </li>
         <li>
           <div className="search-bar-container">

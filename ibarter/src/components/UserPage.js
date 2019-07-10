@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ItemCard from "./ItemCard";
 import NewItemForm from "../containers/NewItemForm";
+import { Link } from 'react-router-dom'
 
 const API = "https://ibarter.herokuapp.com/api/";
 
@@ -41,9 +42,9 @@ class UserPage extends Component {
 						{
 							incoming_offers.map((offer) => {
 								return (
-									<a href="/offer">
+									<Link to={`/offers/${offer.id}`}>
 										<p>{offer.message}</p>
-									</a>
+									</Link>
 								)
 							})
 						}
