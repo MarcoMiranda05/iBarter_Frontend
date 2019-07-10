@@ -65,6 +65,13 @@ class App extends Component {
       }
     ]
   };
+  // feeding carousel
+
+  recentItemsImages = () => {
+    return this.state.items.map(
+      item => `https://ibarter.herokuapp.com/${item.image_urls[0]}`
+    );
+  };
 
   //Offer form stuff
 
@@ -143,7 +150,7 @@ class App extends Component {
   home = () => {
     return (
       <React.Fragment>
-        <Carousel />
+        <Carousel images={this.recentItemsImages()} />
         <ItemCardContainer items={this.state.items} />
       </React.Fragment>
     );
