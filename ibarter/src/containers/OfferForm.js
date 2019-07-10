@@ -17,12 +17,14 @@ class OfferForm extends React.Component {
 						}
 					</div>
 				</div>
-				<div className="form right">
-					<h1>Make Offer</h1>
-					<label name="message">Message: </label>
-					<textarea rows="4" name="message" onChange={this.props.onChange} />
-					<div id="button-container">
-						<button onClick={() => {this.props.handleSubmit(this.props.id)}}>Submit</button>
+				<div className="right">
+					<div className="form">
+						<h1>Make Offer</h1>
+						<label name="message">Message: </label>
+						<textarea rows="4" name="message" onChange={this.props.onChange} />
+						<div id="button-container">
+							<button onClick={() => {this.props.handleSubmit(this.props.id)}}>Submit</button>
+						</div>
 					</div>
 				</div>
 			</>
