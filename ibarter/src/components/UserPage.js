@@ -66,9 +66,8 @@ class UserPage extends Component {
             </div>
           </div>
         </div>
-        <div className="item-card">
-          <img src={item.image_urls} />
-          {/* <img src={`${API}${item.image_urls[0]}`} /> */}
+        {/* <div className="item-card">
+          <img src={`${API}${item.image_urls[0]}`} />
           <div className="gradient" />
           <div className="card-front">
             <span>
@@ -82,7 +81,7 @@ class UserPage extends Component {
               <span className="pink">Condition:</span> {item.condition}
             </h3>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

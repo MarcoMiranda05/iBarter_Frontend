@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar";
 import Carousel from "./components/Carousel";
 import Footer from "./components/Footer";
 import ItemCardContainer from "./containers/ItemCardContainer";
-import UserPageContainer from "./containers/UserPageContainer";
+import UserPage from "./components/UserPage";
 import NewItemForm from "./containers/NewItemForm";
 import Login from "./containers/Login";
 import Logout from "./components/Logout";
@@ -162,7 +162,7 @@ class App extends Component {
   };
 
   userPage = () => {
-    return <UserPageContainer users={this.state.users} />;
+    return <UserPage user={this.state.currentUser} />;
   };
 
   listItem = () => {
