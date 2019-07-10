@@ -25,9 +25,9 @@ class OfferForm extends React.Component {
 						<div id="button-container">
 							<button onClick={() => {
 								this.props.handleSubmit(this.props.id)
-								this.props.history.push("/signup")
+								this.props.history.push("/")
 							}}>Submit</button>
-						</div>
+						</div>g
 					</div>
 				</div>
 			</>
