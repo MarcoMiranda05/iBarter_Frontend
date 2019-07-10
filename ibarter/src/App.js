@@ -174,11 +174,11 @@ class App extends Component {
 	makeOffer = props => {
 		return (
 			<OfferForm
-				id={props.match.params.id}
-				onChange={this.offerFormOnChange}
-				offerForm={this.state.offerForm}
-				selectItem={this.offerFormSelectItem}
-				handleSubmit={this.offerFormHandleSubmit}
+			id={props.match.params.id}
+			onChange={this.offerFormOnChange}
+			offerForm={this.state.offerForm}
+			selectItem={this.offerFormSelectItem}
+			handleSubmit={this.offerFormHandleSubmit}
 			/>
 		);
 	};
@@ -211,8 +211,8 @@ class App extends Component {
 		return (
 			<>
 				<link
-					href="https://fonts.googleapis.com/css?family=Raleway:200&display=swap"
-					rel="stylesheet"
+				href="https://fonts.googleapis.com/css?family=Raleway:200&display=swap"
+				rel="stylesheet"
 				/>
 				<Router>
 					<NavBar currentUser={this.state.currentUser} />
@@ -232,7 +232,7 @@ class App extends Component {
 				<Footer />
 			</>
 		);
-  }
+	}
 }
 
 export default App;

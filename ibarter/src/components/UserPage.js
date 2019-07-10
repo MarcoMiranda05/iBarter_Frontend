@@ -5,7 +5,6 @@ import NewItemForm from "../containers/NewItemForm";
 const API = "https://ibarter.herokuapp.com/api/";
 
 class UserPage extends Component {
-
 	state = {
 		user: {
 			incoming_offers: [],
