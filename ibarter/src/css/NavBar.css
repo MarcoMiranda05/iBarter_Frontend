@@ -118,6 +118,7 @@ button:hover,
 .welcome {
   color: #ed5941;
   padding: 0px;
+  margin-right: 5px;
 }
 
 .nav-item {

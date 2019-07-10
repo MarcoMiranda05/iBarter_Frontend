@@ -68,9 +68,9 @@ class App extends Component {
   // feeding carousel
 
   recentItemsImages = () => {
-    return this.state.items.map(
-      item => `https://ibarter.herokuapp.com/${item.image_urls[0]}`
-    );
+    return this.state.items
+      .map(item => `https://ibarter.herokuapp.com/${item.image_urls[0]}`)
+      .slice(-6);
   };
 
   //Offer form stuff

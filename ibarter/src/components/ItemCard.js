@@ -22,7 +22,8 @@ const ItemCard = props => {
             <span className="pink">Condition:</span> {item.condition}
           </h3>
           <h3>
-            <span className="pink">User:</span> {item.user.id}
+            <span className="pink">User:</span> {item.user.first_name}{" "}
+            {item.user.last_name}
           </h3>
         </div>
       </div>

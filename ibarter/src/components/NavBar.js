@@ -20,8 +20,8 @@ const NavBar = props => {
         </li>
         <li className="login">
           <div>
-            <li className="welcome">Welcome, </li>
-            <li className="name"> {props.currentUser.first_name}</li>
+            <li className="welcome">Welcome,</li>
+            <li className="name">{props.currentUser.first_name}</li>
           </div>
         </li>
       </React.Fragment>

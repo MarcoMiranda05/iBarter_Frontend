@@ -22,17 +22,30 @@ class AboutUs extends Component {
         </div>
         <div>
           <p className="question">What the conditions means?</p>
-          <p>aaAA</p>
+          <p>
+            As a trading app, we do our best to certify that you are receiving
+            the correct information about the item that you want to trade for
+            it. This is why we have defined five categories of conditions:
+          </p>
           <p className="question">New</p>
-          <p>aaAA</p>
+          <p>Still on the box or barely used item.</p>
           <p className="question">Good</p>
-          <p>aaAA</p>
+          <p>
+            The item can be found in a very good state, but still is used for a
+            certain amount of time.
+          </p>
           <p className="question">Worn</p>
-          <p>aaAA</p>
+          <p>
+            Clear signs of usage, but in fair conditions to serve the new owner
+            without any problem.
+          </p>
           <p className="question">Damaged</p>
-          <p>aaAA</p>
+          <p>
+            The item has damage spots like a broken screen or deep scratches but
+            still is functional.
+          </p>
           <p className="question">Broken</p>
-          <p>aaAA</p>
+          <p>It isn't working.</p>
         </div>
       </div>
     );
