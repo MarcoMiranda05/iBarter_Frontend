@@ -176,7 +176,10 @@ class App extends Component {
   };
 
   showItem = props => {
-    return <ItemPage id={props.match.params.id} />;
+      return <ItemPage
+				 id={props.match.params.id}
+				 currentUser={this.state.currentUser}
+	  />;
   };
 
   signUp = props => {
