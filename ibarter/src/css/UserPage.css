@@ -1,39 +1,32 @@
 .user-page {
-  display: grid;
   padding-top: 50px;
-  grid-template-areas:
-    "header header header header header header"
-    "menu menu menu main main main";
-
-  grid-gap: 10px;
 }
 
-.user-page > div {
-  text-align: center;
-  padding: 20px 0;
-}
-
-.user-page-name {
-  grid-area: header;
-  color: #ed5941;
-  display: block;
-  padding: 0% 40% 0% 45%;
+.info-card {
+  width: 100%;
+  padding-top: 20px;
+  display: flex;
 }
 
 .user-card {
-  grid-area: main;
+  position: relative;
+  text-align: center;
+  width: 33%;
+  height: 33%;
+}
+
+.pic-card {
+  display: inline;
+  position: relative;
+  text-align: center;
+  width: 33%;
+  height: 33%;
 }
 
 .profile_pic {
-  float: right;
+  display: inline;
   border-radius: 50%;
-  width: 250px;
-  margin-left: 100px;
-  margin-right: 100px;
-}
-
-.user-info {
-  float: right;
+  width: 200px;
 }
 
 .user-info h2 {
@@ -48,11 +41,10 @@
 }
 
 .user-inbox {
-  grid-area: menu;
-
-  color: white;
-
-  height: 250px;
+  position: relative;
+  text-align: center;
+  width: 33%;
+  height: 33%;
 }
 
 .user-inbox h2 {
@@ -83,4 +75,10 @@
 .offers-lines a {
   color: white;
   text-decoration: none;
+}
+
+.my-itens {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }

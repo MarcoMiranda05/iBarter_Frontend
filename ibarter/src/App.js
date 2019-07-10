@@ -26,46 +26,11 @@ class App extends Component {
     currentUser: {
       items: []
     },
-    users: [
-      {
-        id: 1,
-        first_name: "Pat",
-        last_name: "Santucci",
-        email: "isuck@cambio.com",
-        addr1: "51 Cambio Road",
-        town: "Cambioville",
-        county: "Cambioshire",
-        postcode: "ER00R4",
-        profile_pic:
-          "https://uploads-learn.s3.amazonaws.com/uploads/identities/learn_account/avatar/f4738c2e-a40a-47be-9734-ce9c5169075d/avatar.png",
-        item: {
-          id: 1,
-          image_urls:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj5vHWF0Ihtq21FIAATMM0C3eEJZKnjf4dqFMQpHlx6Fxtr2nq9Q",
-          name: "Tapioca",
-          description: "Looks like cocaine, but isn't",
-          condition: "good"
-        }
-      }
-    ],
+
     offerForm: {
       item_id: "",
       items: []
-    },
-    offers: [
-      {
-        accepted: false,
-        message: "cool cool cool",
-        item: {
-          image_urls:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj5vHWF0Ihtq21FIAATMM0C3eEJZKnjf4dqFMQpHlx6Fxtr2nq9Q",
-
-          name: "Tapioca",
-          description: "Looks like cocaine, but isn't",
-          condition: "good"
-        }
-      }
-    ]
+    }
   };
 
   // feeding carousel
