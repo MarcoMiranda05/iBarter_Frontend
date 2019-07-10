@@ -11,6 +11,7 @@ import Logout from "./components/Logout";
 import SignUpForm from "./containers/SignUpForm";
 import OfferForm from "./containers/OfferForm";
 import ItemPage from "./containers/ItemPage";
+import OfferPage from "./components/OfferPage";
 import OffersContainer from "./containers/OffersContainer";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AboutUs from "./components/AboutUs";
@@ -183,8 +184,8 @@ class App extends Component {
 		);
 	};
 
-	offerPage = () => {
-		return <OffersContainer offers={this.state.offers} />;
+	offerPage = (props) => {
+		return <OfferPage id={props.match.params.id} currentUser={this.state.currentUser} />;
 	};
 
 	login = () => {
@@ -225,7 +226,7 @@ class App extends Component {
 						<Route path="/items/:id" component={this.showItem} />
 						<Route path="/users/:id" component={this.userPage} />
 						<Route path="/make-offer/:id" component={this.makeOffer} />
-						<Route path="/offer" component={this.offerPage} />
+						<Route path="/offers/:id" component={this.offerPage} />
 						<Route path="/about-us" component={this.aboutUsPage} />
 					</div>
 				</Router>
