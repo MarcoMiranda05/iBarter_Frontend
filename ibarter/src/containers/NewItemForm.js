@@ -30,6 +30,7 @@ class NewItemForm extends React.Component {
     }).then(() => {
       this.setState({ itemForm: new FormData() });
       this.props.history.push("/");
+      this.props.fetchItems();
     });
   };
 

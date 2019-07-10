@@ -101,7 +101,7 @@ class App extends Component {
     this.setOfferFormState();
   };
 
-  componentDidMount() {
+  fetchItems = () => {
     fetch(`${API}items`)
       .then(resp => resp.json())
       .then(data => {
@@ -113,6 +113,10 @@ class App extends Component {
         this.onUserSet();
       });
     }
+  };
+
+  componentDidMount() {
+    this.fetchItems();
   }
 
   home = () => {
@@ -142,7 +146,11 @@ class App extends Component {
 
   listItem = () => {
     return (
-      <NewItemForm onChange={this.itemOnChange} submit={this.submitItem} />
+      <NewItemForm
+        onChange={this.itemOnChange}
+        submit={this.submitItem}
+        fetchItems={this.fetchItems}
+      />
     );
   };
 
@@ -176,10 +184,12 @@ class App extends Component {
   };
 
   showItem = props => {
-      return <ItemPage
-				 id={props.match.params.id}
-				 currentUser={this.state.currentUser}
-	  />;
+    return (
+      <ItemPage
+        id={props.match.params.id}
+        currentUser={this.state.currentUser}
+      />
+    );
   };
 
   signUp = props => {
